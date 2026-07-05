@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Klasifikasi Kondisi Psikologis</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <span class="badge"> Deep Learning NLP Project</span>
+    <h1 class="hero-title">Klasifikasi Kondisi Psikologis</h1>
+    <p class="hero-subtitle">Berdasarkan Teks ke dalam Kategori Tertentu Menggunakan Deep Learning</p>
+    <p class="hero-desc">
+      Sistem AI yang menganalisis teks untuk mengidentifikasi dan mengklasifikasikan
+      kondisi psikologis seperti depresi, kecemasan, dan kondisi mental lainnya.
+    </p>
+
+    <div class="hero-buttons">
+      <button class="btn-primary" onclick="scrollToAnalysis()">Mulai Analisis</button>
+      <button class="btn-outline" onclick="scrollToAbout()">Pelajari Lebih Lanjut</button>
+    </div>
+
+    <div class="feature-cards">
+      <div class="feature-card">
+        <div class="icon icon-blue">🧠</div>
+        <h3>Deep Learning</h3>
+        <p>Model neural network yang dilatih untuk mengenali pola dalam teks</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon icon-purple">🗄️</div>
+        <h3>Dataset Lengkap</h3>
+        <p>Menggunakan dataset Mental Health Text Classification dari Kaggle</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon icon-green">📈</div>
+        <h3>Akurasi Tinggi</h3>
+        <p>Hasil klasifikasi dengan tingkat akurasi dan presisi optimal</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANALISIS SECTION -->
+  <section class="analysis" id="analysis">
+    <h2>Analisis Teks</h2>
+    <p class="analysis-subtitle">Masukkan teks untuk mengklasifikasikan kondisi psikologis</p>
+
+    <div class="analysis-grid">
+
+      <!-- KIRI: INPUT -->
+      <div class="input-panel">
+        <div class="input-header">
+          <label>Input Teks</label>
+          <span id="charCount">0 karakter</span>
+        </div>
+        <textarea id="inputText" placeholder="Tulis kalimat di sini..." oninput="updateCharCount()"></textarea>
+
+        <p class="example-label">Atau gunakan contoh teks:</p>
+        <button class="example-btn" onclick="fillExample('I feel hopeless and empty every day, nothing matters anymore.')">
+          Contoh: Teks dengan indikasi depresi
+        </button>
+        <button class="example-btn" onclick="fillExample('I get nervous and my heart races even when there is nothing to worry about.')">
+          Contoh: Teks dengan indikasi kecemasan
+        </button>
+        <button class="example-btn" onclick="fillExample('Today is a beautiful day and I feel great about my life.')">
+          Contoh: Teks dengan indikasi normal
+        </button>
+
+        <button class="btn-primary btn-full" onclick="predict()">Analisis Sekarang</button>
+      </div>
+
+      <!-- KANAN: HASIL -->
+      <div class="result-panel">
+        <div class="result-card">
+          <div class="result-header">
+            <h3>Hasil Klasifikasi</h3>
+            <span id="statusIcon">⚪</span>
+          </div>
+          <div id="labelBadge" class="label-badge">-</div>
+          <p id="labelDesc" class="label-desc">Masukkan teks lalu klik "Analisis Sekarang"</p>
+
+          <div class="confidence-section">
+            <div class="confidence-header">
+              <span>Confidence Score:</span>
+              <span id="confidenceValue">0%</span>
+            </div>
+            <div class="confidence-bar-bg">
+              <div id="confidenceBar" class="confidence-bar-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="recommendationBox" class="recommendation-box" style="display:none;">
+          <h4>⚠️ Rekomendasi</h4>
+          <ul id="recommendationList"></ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
