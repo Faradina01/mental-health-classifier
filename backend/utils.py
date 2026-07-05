@@ -41,6 +41,8 @@ if not os.path.exists(MODEL_PATH):
     with open(MODEL_PATH, "wb") as f:
         f.write(r.content)
 
+print("Model exists:", os.path.exists(MODEL_PATH))
+print("Model size:", os.path.getsize(MODEL_PATH) if os.path.exists(MODEL_PATH) else 0)
 print("Loading model...")
 model.load_weights(MODEL_PATH)
 
