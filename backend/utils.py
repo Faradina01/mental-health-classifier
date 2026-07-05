@@ -1,4 +1,6 @@
 import re
+import os
+import requests
 import pickle
 import numpy as np
 from tensorflow.keras.models import Sequential
@@ -24,7 +26,23 @@ model = Sequential([
 ])
 
 # PENTING: pakai file .h5 yang ASLI (bukan yang di-convert ke .keras)
-model.load_weights("model/best_fasttext_lstm.h5")
+MODEL_PATH = "model/best_fasttext_lstm.h5"
+
+if not os.path.exists(MODEL_PATH):
+    print("Downloading model...")
+
+    url = "https://github.com/Faradina01/mental-health-classifier/releases/download/v1.0/best_fasttext_lstm.h5"
+
+    r = requests.get(url, allow_redirects=True)
+    r.raise_for_status()
+
+    os.makedirs("model", exist_ok=True)
+
+    with open(MODEL_PATH, "wb") as f:
+        f.write(r.content)
+
+print("Loading model...")
+model.load_weights(MODEL_PATH)
 
 with open("model/tokenizer.pkl", "rb") as f:
     tokenizer = pickle.load(f)
